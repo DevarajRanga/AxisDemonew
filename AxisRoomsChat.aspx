@@ -14,20 +14,21 @@
 <body ng-app="axisApp">
     <form id="form1" runat="server">
     <div class="chat_cnt" ng-controller="chatController">
+        <div class="search {{opclass}}" ><input type="text" placeholder=' SearchText' ng-model="srch"/><div class="cncl" ng-click="showsrch()">cancel</div></div>
           <div class="chat_lft_cnt">
-              <div class="cnt_title"><h3>Chats<i class="fa fa-search" aria-hidden="true"></i></h3></div>
-              <div class="friednlist"><span class="frnd_itm sortbtn" ng-click="sortfun('FriendName')" >Name</span><span class="frnd_itm sortbtn" ng-click="sortfun('on')">Date</span></div>
-              <div class="friednlist" ng-repeat="dtls in friendsDtl | orderBy:sortCol:sortodr" ng-click="getData(dtls.FriendID)">
+              <div class="cnt_title"><h3>Chats<i class="fa fa-search" aria-hidden="true" ng-click="showsrch('show')"></i></h3></div>
+              <div class="friednlist"><span class="frnd_itm sortbtn" ng-click="sortfun('FriendName')" >Name<div class="icn_cnt"><i ng-class="sortAngle('FriendName')" aria-hidden="true"></i></div></span><span class="frnd_itm sortbtn" ng-click="sortfun('on')">Date<div class="icn_cnt"><i ng-class="sortAngle('on')" aria-hidden="true"></i></div></span></div>
+              <div class="friednlist" ng-repeat="dtls in friendsDtl | orderBy:sortCol:sortodr | filter:srch" ng-click="getData(dtls.FriendID)">
                   <div class="frnd_itm" ng-class="activateChat(dtls.FriendID)">
                       <img class="fitm_img" src="http://localhost:59026/Image/anju.jpg" /><h3 class="fitm_name">{{dtls.FriendName}} <span>{{dtls.on }}</span></h3><p class="lst_msg">{{dtls.message}}</p>
                   </div>
               </div>
           </div>
         <div class="chat_right_cnt">
-            <div class="cnt_title"><h3>Messages<span style="float:right;margin: -5px 0 0 0px;"><label class="switch"><input type="checkbox" ng-click="setMessager()" ><span class="slider"></span></label></span></h3></div>
-            <div class="msg_cnt" ng-class="{{opclass}}">
+            <div class="cnt_title"><h3>Messages<span style="float:right;margin: -5px 0 0 0px;"><label class="switch" style="display:{{friednId > 0 ? 'flex' : 'none'}}"><input type="checkbox" ng-click="setMessager()" ><span class="slider"></span></label></span></h3></div>
+            <div class="msg_cnt" >
                 <div class="msg_lst" ng-repeat="data in msgdtls" >
-                    <div class="msg_item {{data.MessageBy > 0 ? 'right' : 'left'}}">{{data.Message}}</div><div style="clear:both" ng-show="{{data.MessageBy > 0 ? true : false}}"></div>
+                    <div class="msg_item {{data.MessageBy > 0 ? 'right' : 'left'}}">{{data.Message}}<span class="dtfld">{{data.msgdt}}</span></div><div style="clear:both" ng-show="{{data.MessageBy > 0 ? true : false}}"></div>
                 </div>
             </div>
             <div class="msg_send" style="display:{{friednId > 0 ? 'flex' : 'none'}}"><textarea ng-model="messageTxt" placeholder="Type Your Message"></textarea><span class="msg_btn" ng-click="insertMsg()"  ng-disabled="enablesend()">send</span></div>

@@ -195,7 +195,7 @@ input:checked + .slider:before {
 .msg_item {
     min-width: 100px;
     max-width: 80%;
-    min-height: 30px;
+    min-height: 40px;
     line-height: 200%;
     word-break: break-all;
     background: #35d686;
@@ -204,6 +204,16 @@ input:checked + .slider:before {
     display: inline-block;
     padding: 10px;
     border-radius: 10px;
+    position:relative;
+}
+.dtfld{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 0 5px;
+    font-size: 10pt;
+    color: #f4efef;
+    margin: 0 0 -5px 0;
 }
 .frnd_itm.sortbtn {
     display: inline-block;
@@ -217,10 +227,51 @@ input:checked + .slider:before {
     border-radius: 5px;
     margin-right: 1%;
 }
+.icn_cnt {
+    display: inline-block;
+    width:20px;
+}
+.icn_cnt .fa{
+    display: inline-block;
+    padding-left:5px
+}
 .msg_item.right {
     background-color: #40b1e3;
     float: right;
 }
 .opglow{
     opacity:1 !important;
+}
+.search {
+    position: absolute;
+    width: 99%;
+    height: 0px;
+    overflow: hidden;
+    background: black;
+    z-index: 12;
+    margin-top: 5px;
+    margin-left: 5px;
+    transition: all .3s;
+    box-sizing: border-box;
+}
+.search input{
+    width: 90%;
+    padding-left: 5px;
+    margin: 0;
+    border-radius: 10px;
+    border: none;
+    height: 35px;
+    outline: none;
+    box-sizing: border-box;
+}
+.cncl {
+    display: inline-block;
+    font-size: 25px;
+    text-align: center;
+    width: 10%;
+    cursor:pointer;
+    color: white;
+}
+.showsrch{
+    height:35px!important;
 }
